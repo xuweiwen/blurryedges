@@ -427,10 +427,14 @@ transition: transform 0.3s ease, border 0.3s ease;
 
 .image-group-comp-real {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 10px;
   max-width: 100%;
   justify-items: center;
   align-items: center;
+}
+
+.image-group-comp-real .image-item-container-comp:nth-child(3) {
+  grid-row: span 2; /* Spans across two rows */
 }
