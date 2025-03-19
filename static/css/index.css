@@ -449,6 +449,16 @@ transition: transform 0.3s ease, border 0.3s ease;
   z-index: 999;
   padding: 12px;
   text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.color-bar-container.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .upper-limit, .lower-limit {
@@ -482,17 +492,4 @@ transition: transform 0.3s ease, border 0.3s ease;
   max-height: 200px;
   width: 100%;
   object-fit: contain;
-}
-
-#color-bar {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-  pointer-events: none;
-}
-
-#color-bar.visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
 }
