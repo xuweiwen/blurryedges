@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <!-- <meta name="description" content="Guo Lab @ Purdue ECE">
+  <meta property="og:title" content="Guo Lab @ Purdue ECE"/>
+  <meta property="og:description" content="Guo Lab @ Purdue ECE"/>
+  <meta property="og:url" content="weixu.xyz"/> -->
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <!-- <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/> -->
+
+
+  <!-- <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG"> -->
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image"> -->
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="Blurry-Edges, Depth from defocus, Low-light imaging, Boundary detection, Computational imaging, Deep learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>Blurry-Edges</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Blurry-Edges: Photon-Limited Depth Estimation from Defocused Boundaries</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block"><a href="https://www.weixu.xyz/" target="_blank">Wei Xu</a>,</span>
+              <span class="author-block"><a href="https://www.linkedin.com/in/charlie-wagner-887284221/" target="_blank">Charles James Wagner</a>,</span>
+              <span class="author-block"><a href="https://luo-jun-jie.github.io/" target="_blank">Junjie Luo</a>,</span>
+              <span class="author-block"><a href="https://www.qiguo.org/pi" target="_blank">Qi Guo</a></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Purdue University<br><h1 style="color:Tomato;">CVPR 2025</h1></span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                    <!-- Arxiv PDF link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper (coming soon)</span>
+                </a>
+              </span>
+
+              <!-- Supplementary PDF link -->
+              <span class="link-block">
+                <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fas fa-file-pdf"></i>
+                </span>
+                <span>Supplementary (coming soon)</span>
+              </a>
+              </span>
+
+              <!-- Github link -->
+              <span class="link-block">
+                <a href="https://github.com/guo-research-group/Blurry-Edges" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+              </a>
+              </span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="content">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <div id="teaser" class="bal-container-small">
+                <div class="bal-before" style="width:50%;">
+                  <div class="bal-before-inset" style="width:50%">
+                    <img id="teaser-left" src="static/images/teaser-in-1.png">
+                    <div class="bal-beforePosition beforeLabel" id="teaserLabel-left">Noisy input #1</div>
+                  </div>
+                </div>
+                <div class="bal-after">
+                  <img id="teaser-right" src="static/images/teaser-dep-est.png">
+                  <div class="bal-afterPosition afterLabel" id="teaserLabel-right" style="z-index:1;">Depth estimation</div>
+                </div>
+                <div class="bal-handle" style="left:50%;">
+                  <span class="handle-left-arrow"></span>
+                  <span class="handle-right-arrow"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content has-text-justified">
+                <div class="drop-down-container">
+                  <label for="imageSelector-left">L:</label>
+                  <select id="imageSelector-left" onchange="changeTeaser('left')">
+                    <option value="teaser-in-1.png" selected>Noisy input #1</option>
+                    <option value="teaser-in-2.png">Noisy input #2</option>
+                    <option value="teaser-col-est-1.png">Restored color map #1</option>
+                    <option value="teaser-col-est-2.png">Restored color map #2</option>
+                    <option value="teaser-col-shp.png">Sharpened color map</option>
+                    <option value="teaser-bndy-est.png">Boundary map</option>
+                    <option value="teaser-dep-gt.png">Depth ground truth</option>
+                    <option value="teaser-dep-est.png">Depth map</option>
+                  </select>
+                </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="content has-text-justified">
+              <div class="drop-down-container">
+                <label for="imageSelector-right">R:</label>
+                <select id="imageSelector-right" onchange="changeTeaser('right')">
+                  <option value="teaser-in-1.png">Noisy input #1</option>
+                  <option value="teaser-in-2.png">Noisy input #2</option>
+                  <option value="teaser-col-est-1.png">Restored color map #1</option>
+                  <option value="teaser-col-est-2.png">Restored color map #2</option>
+                  <option value="teaser-col-shp.png">Sharpened color map</option>
+                  <option value="teaser-bndy-est.png">Boundary map</option>
+                  <option value="teaser-dep-gt.png">Depth ground truth</option>
+                  <option value="teaser-dep-est.png" selected>Depth map</option>
+                </select>
+              </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Paper abstract -->
+  <section class="hero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Extracting depth information from photon-limited, defocused images is challenging because depth from defocus (DfD) relies on accurate estimation of defocus blur, which is fundamentally sensitive to image noise. We present a novel approach to robustly measure object depths from photon-limited images along the defocused boundaries. It is based on a new image patch representation, Blurry-Edges, that explicitly stores and visualizes a rich set of low-level patch information, including boundaries, color, and smoothness. We develop a deep neural network architecture that predicts the Blurry-Edges representation from a pair of differently defocused images, from which depth can be analytically calculated using a novel DfD relation we derive. Our experiment shows that our method achieves the highest depth estimation accuracy on photon-limited images compared to a broad range of state-of-the-art DfD methods. 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End paper abstract -->
+
+  <section class="hero is-small is-light">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <h2 class="title">Representaion</h2>
+        <div class="columns is-centered is-vcentered is-gapless  equal-height">
+          <div class="column is-two-fifths">
+            <div class="content has-text-centered">
+              <video poster="" id="rep-video" autoplay controls muted loop style="max-width: 80%; max-height: 400px; height: auto; width: auto;">
+                <source src="static/videos/rep.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="column is-two-fifths">
+            <div class="content has-text-centered">
+              <div style="text-align: center;">
+                <img id="rep-image" src="static/images/rep.png" alt="Representation" style="max-width: 80%; max-height: 400px; height: auto; width: auto;"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h2 class="content has-text-justified">
+          Blurry-Edges models each patch by a set of parameters, $\boldsymbol{\Psi} = \left( \{\boldsymbol{p}_i, \boldsymbol{\theta}_i, \boldsymbol{c}_i, \eta_i, i = 1,2,\cdots,l\}, \boldsymbol{c}_0\right)$. The tuple $(\boldsymbol{p}_i, \boldsymbol{\theta}_i, \boldsymbol{c}_i, \eta_i)$ parameterize the $i$th wedge in the patch, with $\boldsymbol{p}_i = (x_i, y_i)$ representing the vertex, $\boldsymbol{\theta}_i = (\theta_{i1}, \theta_{i2})$ denoting the starting and ending angle, $\boldsymbol{c}_i$ indicating the RGB color, and $\eta_i$ recording the smoothness of the boundary. The wedge with a large index is in the front. The vector $\boldsymbol{c}_0$ represents the RGB color of the background. As shown on the right, this representation can model various boundary structures and smoothness with only two wedges.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-small">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <h2 class="title">Model architecture</h2>
+        <img src="static/images/model.png" alt="Model architecture"/>
+        <h2 class="content has-text-justified">
+          There are two stages. The local stage consists of residual blocks and predicts the Blurry-Edges representation for each patch locally. The global stage consists of a Transformer Encoder and refines the Blurry-Edges representation for all patches globally. Finally, the framework combines all the per-patch representations and outputs the global boundary map, color map, and depth map.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-small is-light">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <h2 class="title">Comparison</h2>
+        <div class="image-group-container-comp" id="imageGroup">
+
+          <!-- Group 1 -->
+          <div class="image-group-comp" id="group1">
+            <div class="image-item-container-comp">
+              <img src="static/images/gt-1.png" alt="Ground truth" class="image-item-comp" />
+              <div class="image-label-comp">Ground truth</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-w-1.png" alt="Ours-W" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours-W</b> (2.962)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/focal-track-1.png" alt="Focal Track" class="image-item-comp" />
+              <div class="image-label-comp">Focal Track (2.898)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/phasecam3d-1.png" alt="PhaseCam3D" class="image-item-comp" />
+              <div class="image-label-comp">PhaseCam3D (5.984)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dfv-dff-1.png" alt="DFV-DFF" class="image-item-comp" />
+              <div class="image-label-comp">DFV-DFF (9.604)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-1.png" alt="Ours" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours</b> (1.922)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-pp-1.png" alt="Ours-PP" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours-PP</b> (1.748)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dfdw-1.png" alt="Tang et al." class="image-item-comp" />
+              <div class="image-label-comp">Tang <i>et al.</i> (2.838)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/defocusnet-1.png" alt="DefocusNet" class="image-item-comp" />
+              <div class="image-label-comp">DefocusNet (5.480)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dered-1.png" alt="DEReD" class="image-item-comp" />
+              <div class="image-label-comp">DEReD (6.611)</div>
+            </div>
+          </div>
+        
+          <!-- Group 2 -->
+          <div class="image-group-comp" id="group2" style="display: none;">
+            <div class="image-item-container-comp">
+              <img src="static/images/gt-2.png" alt="Ground truth" class="image-item-comp" />
+              <div class="image-label-comp">Ground truth</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-w-2.png" alt="Ours-W" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours-W</b> (5.558)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/focal-track-2.png" alt="Focal Track" class="image-item-comp" />
+              <div class="image-label-comp">Focal Track (6.460)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/phasecam3d-2.png" alt="PhaseCam3D" class="image-item-comp" />
+              <div class="image-label-comp">PhaseCam3D (7.617)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dfv-dff-2.png" alt="DFV-DFF" class="image-item-comp" />
+              <div class="image-label-comp">DFV-DFF (10.970)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-2.png" alt="Ours" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours</b> (4.566)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-pp-2.png" alt="Ours-PP" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours-PP</b> (3.750)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dfdw-2.png" alt="Tang et al." class="image-item-comp" />
+              <div class="image-label-comp">Tang <i>et al.</i> (7.162)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/defocusnet-2.png" alt="DefocusNet" class="image-item-comp" />
+              <div class="image-label-comp">DefocusNet (7.635)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dered-2.png" alt="DEReD" class="image-item-comp" />
+              <div class="image-label-comp">DEReD (8.491)</div>
+            </div>
+          </div>
+        
+          <!-- Group 3 -->
+          <div class="image-group-comp" id="group3" style="display: none;">
+            <div class="image-item-container-comp">
+              <img src="static/images/gt-3.png" alt="Ground truth" class="image-item-comp" />
+              <div class="image-label-comp">Ground truth</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-w-3.png" alt="Ours-W" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours-W</b> (5.612)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/focal-track-3.png" alt="Focal Track" class="image-item-comp" />
+              <div class="image-label-comp">Focal Track (5.090)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/phasecam3d-3.png" alt="PhaseCam3D" class="image-item-comp" />
+              <div class="image-label-comp">PhaseCam3D (16.526)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dfv-dff-3.png" alt="DFV-DFF" class="image-item-comp" />
+              <div class="image-label-comp">DFV-DFF (8.696)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-3.png" alt="Ours" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours</b> (5.000)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-pp-3.png" alt="Ours-PP" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours-PP</b> (3.877)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dfdw-3.png" alt="Tang et al." class="image-item-comp" />
+              <div class="image-label-comp">Tang <i>et al.</i> (7.759)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/defocusnet-3.png" alt="DefocusNet" class="image-item-comp" />
+              <div class="image-label-comp">DefocusNet (6.475)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dered-3.png" alt="DEReD" class="image-item-comp" />
+              <div class="image-label-comp">DEReD (6.709)</div>
+            </div>
+          </div>
+          
+          <!-- Group 4 -->
+          <div class="image-group-comp" id="group4" style="display: none;">
+            <div class="image-item-container-comp">
+              <img src="static/images/gt-4.png" alt="Ground truth" class="image-item-comp" />
+              <div class="image-label-comp">Ground truth</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-w-4.png" alt="Ours-W" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours-W</b> (1.128)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/focal-track-4.png" alt="Focal Track" class="image-item-comp" />
+              <div class="image-label-comp">Focal Track (7.846)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/phasecam3d-4.png" alt="PhaseCam3D" class="image-item-comp" />
+              <div class="image-label-comp">PhaseCam3D (9.220)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dfv-dff-4.png" alt="DFV-DFF" class="image-item-comp" />
+              <div class="image-label-comp">DFV-DFF (11.712)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-4.png" alt="Ours" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours</b> (1.379)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-pp-4.png" alt="Ours-PP" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours-PP</b> (0.687)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dfdw-4.png" alt="Tang et al." class="image-item-comp" />
+              <div class="image-label-comp">Tang <i>et al.</i> (7.101)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/defocusnet-4.png" alt="DefocusNet" class="image-item-comp" />
+              <div class="image-label-comp">DefocusNet (3.198)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dered-4.png" alt="DEReD" class="image-item-comp" />
+              <div class="image-label-comp">DEReD (6.626)</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="image-group" data-group="synthetic">
+              <ul class="nav nav-pills" style="display: flex; justify-content: center; padding: 0; list-style: none;">
+                <li class="nav-item" style="display: flex; justify-content: center; align-items: center;">
+                  <a href="javascript:change_image(1);" style="display: flex; justify-content: center; align-items: center;">
+                    <img data-group="synthetic" data-id="101" src="static/images/scene-1.png" style="max-width: 50%; height: auto;" class="image-hover image-selected" onclick="selectImage(this)"/>
+                  </a>
+                </li>
+                <li class="nav-item" style="display: flex; justify-content: center; align-items: center;">
+                  <a href="javascript:change_image(2);" style="display: flex; justify-content: center; align-items: center;">
+                    <img data-group="synthetic" data-id="102" src="static/images/scene-2.png" style="max-width: 50%; height: auto;" class="image-hover" onclick="selectImage(this)"/>
+                  </a>
+                </li>
+                <li class="nav-item" style="display: flex; justify-content: center; align-items: center;">
+                  <a href="javascript:change_image(3);" style="display: flex; justify-content: center; align-items: center;">
+                    <img data-group="synthetic" data-id="102" src="static/images/scene-3.png" style="max-width: 50%; height: auto;" class="image-hover" onclick="selectImage(this)"/>
+                  </a>
+                </li>
+                <li class="nav-item" style="display: flex; justify-content: center; align-items: center;">
+                  <a href="javascript:change_image(4);" style="display: flex; justify-content: center; align-items: center;">
+                    <img data-group="synthetic" data-id="102" src="static/images/scene-4.png" style="max-width: 50%; height: auto;" class="image-hover" onclick="selectImage(this)"/>
+                  </a>
+                </li>
+              </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <p><small>
+            The notations <i>Ours</i>, <i>Ours-W</i>, and <i>Ours-PP</i> refer to the sparse depth maps, dense depth maps from Blurry-Edges, and dense depth maps generated from the sparse depth maps using a U-Net as post-processing, respectively. Insert numbers are RMSE (cm) of the predict depth values.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--BibTex citation -->
+  <section class="section is-light" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@InProceedings{xu2025blurryedges,
+        author    = {Xu, Wei and Wagner, Charles James and Luo, Junjie and Guo, Qi},
+        title     = {Blurry-Edges: Photon-Limited Depth Estimation from Defocused Boundaries},
+        booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+        month     = {June},
+        year      = {2025}
+    }</code></pre>
+    </div>
+  </section>
+  <!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </footer>
+
+  <script src="static/js/script.js"></script>
+
+  <script>
+    new BeforeAfter({
+        id: '#teaser'
+    });
+  </script>
+
+  <script>
+    function changeTeaser(side) {
+      var selectedValue = document.getElementById("imageSelector-" + side).value;
+      document.getElementById("teaser-" + side).src = "static/images/" + selectedValue;
+      var imageDescriptions = {
+        "teaser-in-1.png": "Noisy input #1",
+        "teaser-in-2.png": "Noisy input #2",
+        "teaser-col-est-1.png": "Restored color map #1",
+        "teaser-col-est-2.png": "Restored color map #2",
+        "teaser-col-shp.png": "Sharpened color map",
+        "teaser-bndy-est.png": "Boundary map",
+        "teaser-dep-gt.png": "Depth ground truth",
+        "teaser-dep-est.png": "Depth map"
+      };
+      var newLabel = imageDescriptions[selectedValue] || "No description available";
+      document.getElementById("teaserLabel-" + side).innerHTML = newLabel;
+    }
+  </script>
+
+  <script>
+    function setHeight() {
+      var ulElement = document.querySelector('.nav.nav-pills');
+      if (ulElement) {
+        var width = ulElement.offsetWidth;
+        ulElement.style.height = (0.36 * width) + "px";
+      }
+    }
+
+    window.onload = setHeight;
+    window.onresize = setHeight;
+  </script>
+
+  <script>
+    let selectedImages = {"synthetic": 101, "real": 201};
+    function selectImage(imgElement) {
+      const group = imgElement.getAttribute("data-group");
+      const imageId = imgElement.getAttribute("data-id");
+      document.querySelectorAll(`img[data-group='${group}']`).forEach(img => img.classList.remove("image-selected"));
+      imgElement.classList.add("image-selected");
+      selectedImages[group] = imageId;
+    }
+  </script>
+
+  <script>
+    function change_image(id, loc) {
+      document.querySelectorAll(".image-group-comp").forEach(group => {
+        group.style.display = "none";
+      });
+      document.getElementById("group" + id).style.display = "grid";
+    }
+  </script>
+
+</body>
+</html>
