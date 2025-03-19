@@ -116,7 +116,7 @@
     </div>
   </section>
 
-  <section class="hero teaser is-small">
+  <section class="hero teaser is-small colorbar-section">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="content">
@@ -236,7 +236,7 @@
     </div>
   </section>
 
-  <section class="hero is-small is-light">
+  <section class="hero is-small is-light colorbar-section">
     <div class="container is-max-desktop">
       <div class="hero-body">
         <h2 class="title">Comparison</h2>
@@ -508,7 +508,7 @@
     </div>
   </section>
 
-  <section class="hero">
+  <section class="hero colorbar-section">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <h2 class="title">Real-captured images</h2>
@@ -681,13 +681,42 @@
   </div>
   </footer>
 
-  <div class="color-bar-container">
+  <div class="color-bar-container" id="color-bar">
     <span class="limit upper-limit">118 cm</span>
     <div class="color-bar">
       <img src="static/images/colorbar.png" alt="Color Bar" />
     </div>
     <span class="limit lower-limit">75 cm</span>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const colorBar = document.getElementById("color-bar");
+      const targetSections = document.querySelectorAll(".colorbar-section");
+      function isSectionInView(section) {
+        const rect = section.getBoundingClientRect();
+        const sectionHeight = rect.height;
+        const visibleHeight = Math.min(window.innerHeight, rect.bottom) - Math.max(0, rect.top);
+        return visibleHeight >= sectionHeight * 0.5;
+      }
+
+      function toggleColorBar() {
+        let showColorBar = false;
+        targetSections.forEach((section) => {
+          if (isSectionInView(section)) {
+            showColorBar = true;
+          }
+        });
+        if (showColorBar) {
+          colorBar.classList.add('visible');
+        } else {
+          colorBar.classList.remove('visible');
+        }
+      }
+      toggleColorBar();
+      window.addEventListener("scroll", toggleColorBar);
+    });
+  </script>
 
   <script src="static/js/script.js"></script>
 
