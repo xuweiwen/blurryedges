@@ -417,6 +417,50 @@
               <div class="image-label-comp">DEReD (6.626)</div>
             </div>
           </div>
+          
+          <!-- Group 5 -->
+          <div class="image-group-comp" id="group5" style="display: none;">
+            <div class="image-item-container-comp">
+              <img src="static/images/gt-5.png" alt="Ground truth" class="image-item-comp" />
+              <div class="image-label-comp">Ground truth</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-w-5.png" alt="Ours-W" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours-W</b> (4.629)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/focal-track-5.png" alt="Focal Track" class="image-item-comp" />
+              <div class="image-label-comp">Focal Track (5.127)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/phasecam3d-5.png" alt="PhaseCam3D" class="image-item-comp" />
+              <div class="image-label-comp">PhaseCam3D (6.230)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dfv-dff-5.png" alt="DFV-DFF" class="image-item-comp" />
+              <div class="image-label-comp">DFV-DFF (6.253)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-5.png" alt="Ours" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours</b> (4.514)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/ours-pp-5.png" alt="Ours-PP" class="image-item-comp" />
+              <div class="image-label-comp"><b>Ours-PP</b> (2.314)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dfdw-5.png" alt="Tang et al." class="image-item-comp" />
+              <div class="image-label-comp">Tang <i>et al.</i> (5.532)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/defocusnet-5.png" alt="DefocusNet" class="image-item-comp" />
+              <div class="image-label-comp">DefocusNet (6.948)</div>
+            </div>
+            <div class="image-item-container-comp">
+              <img src="static/images/dered-5.png" alt="DEReD" class="image-item-comp" />
+              <div class="image-label-comp">DEReD (7.549)</div>
+            </div>
+          </div>
 
         </div>
 
@@ -445,6 +489,11 @@
                     <img data-group="synthetic" data-id="102" src="static/images/scene-4.png" style="max-width: 50%; height: auto;" class="image-hover" onclick="selectImage(this)"/>
                   </a>
                 </li>
+                <li class="nav-item" style="display: flex; justify-content: center; align-items: center;">
+                  <a href="javascript:change_image(5);" style="display: flex; justify-content: center; align-items: center;">
+                    <img data-group="synthetic" data-id="102" src="static/images/scene-5.png" style="max-width: 50%; height: auto;" class="image-hover" onclick="selectImage(this)"/>
+                  </a>
+                </li>
               </ul>
               </div>
             </div>
@@ -452,7 +501,7 @@
         </div>
         <div class="content has-text-justified">
           <p><small>
-            The notations <i>Ours</i>, <i>Ours-W</i>, and <i>Ours-PP</i> refer to the sparse depth maps, dense depth maps from Blurry-Edges, and dense depth maps generated from the sparse depth maps using a U-Net as post-processing, respectively. Insert numbers are RMSE (cm) of the predict depth values.
+            * The notations <i>Ours</i>, <i>Ours-W</i>, and <i>Ours-PP</i> refer to the sparse depth maps, dense depth maps from Blurry-Edges, and dense depth maps generated from the sparse depth maps using a U-Net as post-processing, respectively. Insert numbers are RMSE (cm) of the predict depth values.
           </p>
         </div>
       </div>
