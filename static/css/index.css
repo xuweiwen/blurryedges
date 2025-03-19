@@ -436,5 +436,50 @@ transition: transform 0.3s ease, border 0.3s ease;
 }
 
 .image-group-comp-real .image-item-container-comp:nth-child(3) {
-  grid-row: span 2; /* Spans across two rows */
+  grid-row: span 2;
+}
+
+
+.color-bar-container {
+  position: fixed;
+  top: 50%;
+  left: 0px;
+  width: 8%;
+  transform: translateY(-50%);
+  z-index: 999;
+  padding: 12px;
+  text-align: center;
+}
+
+.upper-limit, .lower-limit {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7); 
+  padding: 2px;
+  width: auto;
+  text-align: center;
+  display: flex;
+  margin: 0px 0px;
+  border-radius: 5px;
+}
+
+.upper-limit {
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.lower-limit {
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.color-bar {
+  position: relative;
+}
+
+.color-bar img {
+  max-height: 200px;
+  width: 100%;
+  object-fit: contain;
 }
