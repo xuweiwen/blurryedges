@@ -308,12 +308,12 @@ body {
 
 .drop-down-container {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 label {
   font-size: 18px;
-  margin-right: 10px;
+  margin-right: 6px;
 }
 
 select {
