@@ -681,6 +681,29 @@
   </div>
   </footer>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      function updateMainContainerWidth() {
+        const mainContainer = document.querySelector(".container.is-max-desktop");
+        if (mainContainer) {
+          const containerWidth = mainContainer.offsetWidth;
+          const screenWidth = window.innerWidth;
+          if (screenWidth * 0.08 < (screenWidth - containerWidth) / 2) {
+            colorBarPosition = `${(screenWidth - containerWidth) / 2 - screenWidth * 0.08}px`;
+          } else {
+            colorBarPosition = `0`;
+          }
+          document.documentElement.style.setProperty(
+            "--color-bar-right-position",
+            colorBarPosition
+          );
+        }
+      }
+      updateMainContainerWidth();
+      window.addEventListener("resize", updateMainContainerWidth);
+    });
+  </script>
+
   <div class="color-bar-container" id="color-bar">
     <span class="limit upper-limit">118 cm</span>
     <div class="color-bar">

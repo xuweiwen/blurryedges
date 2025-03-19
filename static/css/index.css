@@ -443,7 +443,7 @@ transition: transform 0.3s ease, border 0.3s ease;
 .color-bar-container {
   position: fixed;
   top: 50%;
-  left: 0px;
+  right: var(--color-bar-right-position);
   width: 8%;
   transform: translateY(-50%);
   z-index: 999;
