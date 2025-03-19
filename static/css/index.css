@@ -424,3 +424,13 @@ transition: transform 0.3s ease, border 0.3s ease;
   padding: 3px;
   font-size: 12px;
 }
+
+.image-group-comp-real {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 10px;
+  max-width: 100%;
+  justify-items: center;
+  align-items: center;
+}
