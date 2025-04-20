@@ -190,7 +190,6 @@
     </div>
   </section>
 
-  <!-- Paper abstract -->
   <section class="hero">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
@@ -205,13 +204,27 @@
       </div>
     </div>
   </section>
-  <!-- End paper abstract -->
 
   <section class="hero is-small is-light">
-    <div class="container is-max-desktop">
       <div class="hero-body">
+        <div class="container is-max-desktop">
+          <h2 class="title">Video Presentation</h2>
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <div class="publication-video">
+                <iframe src="https://www.youtube.com/embed/ZUqNXTuO0u8?si=829vEJoK-F6diTkW" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
         <h2 class="title">Representaion</h2>
-        <div class="columns is-centered is-vcentered is-gapless  equal-height">
+        <div class="columns is-centered is-vcentered is-gapless equal-height">
           <div class="column is-two-fifths">
             <div class="content has-text-centered">
               <video poster="" id="rep-video" autoplay controls muted loop style="max-width: 80%; max-height: 400px; height: auto; width: auto;">
@@ -227,28 +240,28 @@
             </div>
           </div>
         </div>
-        <h2 class="content has-text-justified">
+        <p class="content has-text-justified">
           Blurry-Edges models each patch by a set of parameters, $\boldsymbol{\Psi} = \left( \{\boldsymbol{p}_i, \boldsymbol{\theta}_i, \boldsymbol{c}_i, \eta_i, i = 1,2,\cdots,l\}, \boldsymbol{c}_0\right)$. The tuple $(\boldsymbol{p}_i, \boldsymbol{\theta}_i, \boldsymbol{c}_i, \eta_i)$ parameterize the $i$th wedge in the patch, with $\boldsymbol{p}_i = (x_i, y_i)$ representing the vertex, $\boldsymbol{\theta}_i = (\theta_{i1}, \theta_{i2})$ denoting the starting and ending angle, $\boldsymbol{c}_i$ indicating the RGB color, and $\eta_i$ recording the smoothness of the boundary. The wedge with a large index is in the front. The vector $\boldsymbol{c}_0$ represents the RGB color of the background. As shown on the right, this representation can model various boundary structures and smoothness with only two wedges.
-        </h2>
+        </p>
       </div>
     </div>
   </section>
 
-  <section class="hero is-small">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
+  <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
         <h2 class="title">Model architecture</h2>
         <img src="static/images/model.png" alt="Model architecture"/>
-        <h2 class="content has-text-justified">
+        <p class="content has-text-justified">
           There are two stages. The local stage consists of residual blocks and predicts the Blurry-Edges representation for each patch locally. The global stage consists of a Transformer Encoder and refines the Blurry-Edges representation for all patches globally. Finally, the framework combines all the per-patch representations and outputs the global boundary map, color map, and depth map.
-        </h2>
+        </p>
       </div>
     </div>
   </section>
 
-  <section class="hero is-small is-light colorbar-section">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
+  <section class="hero is-small colorbar-section">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
         <h2 class="title">Comparison</h2>
         <div class="image-group-container-comp" id="imageGroup">
 
@@ -518,7 +531,7 @@
     </div>
   </section>
 
-  <section class="hero colorbar-section">
+  <section class="hero colorbar-section is-light">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <h2 class="title">Real-captured images</h2>
