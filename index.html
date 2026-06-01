@@ -236,6 +236,71 @@
 
     </div>
   </section>
+
+  
+<section class="hero teaser is-small colorbar-section">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="content">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <div id="teaser" class="bal-container-small">
+                <div class="bal-before" style="width:50%;">
+                  <div class="bal-before-inset" style="width:50%">
+                    <img id="teaser-left" src="static/images/meta4.png">
+                    <div class="bal-beforePosition beforeLabel" id="teaserLabel-left">Noisy input #1</div>
+                  </div>
+                </div>
+                <div class="bal-after">
+                  <img id="teaser-right" src="static/images/metah2.png">
+                  <div class="bal-afterPosition afterLabel" id="teaserLabel-right" style="z-index:1;">Depth estimation</div>
+                </div>
+                <div class="bal-handle" style="left:50%;">
+                  <span class="handle-left-arrow"></span>
+                  <span class="handle-right-arrow"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content has-text-justified">
+                <div class="drop-down-container">
+                  <label for="imageSelector-left">L:</label>
+                  <select id="imageSelector-left" onchange="changeTeaser('left')">
+                    <option value="teaser-in-1.png" selected>Noisy input #1</option>
+                    <option value="teaser-in-2.png">Noisy input #2</option>
+                    <option value="teaser-col-est-1.png">Restored color map #1</option>
+                    <option value="teaser-col-est-2.png">Restored color map #2</option>
+                    <option value="teaser-col-shp.png">Sharpened color map</option>
+                    <option value="teaser-bndy-est.png">Boundary map</option>
+                    <option value="teaser-dep-gt.png">Depth ground truth</option>
+                    <option value="teaser-dep-est.png">Depth map</option>
+                  </select>
+                </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="content has-text-justified">
+              <div class="drop-down-container">
+                <label for="imageSelector-right">R:</label>
+                <select id="imageSelector-right" onchange="changeTeaser('right')">
+                  <option value="teaser-in-1.png">Noisy input #1</option>
+                  <option value="teaser-in-2.png">Noisy input #2</option>
+                  <option value="teaser-col-est-1.png">Restored color map #1</option>
+                  <option value="teaser-col-est-2.png">Restored color map #2</option>
+                  <option value="teaser-col-shp.png">Sharpened color map</option>
+                  <option value="teaser-bndy-est.png">Boundary map</option>
+                  <option value="teaser-dep-gt.png">Depth ground truth</option>
+                  <option value="teaser-dep-est.png" selected>Depth map</option>
+                </select>
+              </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+</section>
   
 <!-- Paper poster -->
 <section class="hero is-small is-light">
