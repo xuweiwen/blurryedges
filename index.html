@@ -238,59 +238,6 @@
     </div>
   </section>
 
-  
-<section class="hero teaser is-small colorbar-section">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="content">
-          <div class="columns is-centered has-text-centered">
-            <div class="column is-four-fifths">
-              <div id="teaser" class="bal-container-small">
-                <div class="bal-before" style="width:50%;">
-                  <div class="bal-before-inset" style="width:50%">
-                    <img id="teaser-left" src="static/images/ref_rgb.png">
-                    <div class="bal-beforePosition beforeLabel" id="teaserLabel-left">Noisy input #1</div>
-                  </div>
-                </div>
-                <div class="bal-after">
-                  <img id="teaser-right" src="static/images/meas1.png">
-                  <div class="bal-afterPosition afterLabel" id="teaserLabel-right" style="z-index:1;">Depth estimation</div>
-                </div>
-                <div class="bal-handle" style="left:50%;">
-                  <span class="handle-left-arrow"></span>
-                  <span class="handle-right-arrow"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="columns is-centered">
-            <div class="column">
-              <div class="content has-text-justified">
-                <div class="drop-down-container">
-                  <label for="imageSelector-left">L:</label>
-                  <select id="imageSelector-left" onchange="changeTeaser('left')">
-                    <option value="meta4.png" selected>Noisy input #1</option>
-                    <option value="metah2.png">Noisy input #2</option>
-                  </select>
-                </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="content has-text-justified">
-              <div class="drop-down-container">
-                <label for="imageSelector-right">R:</label>
-                <select id="imageSelector-right" onchange="changeTeaser('right')">
-                  <option value="ref_rgb.png">Noisy input #1</option>
-                  <option value="meas1.png">Noisy input #2</option>
-                </select>
-              </div>
-          </div>
-        </div>
-        </div>
-      </div>
-    </div>
-</section>
-
 <section class="hero colorbar-section is-light">
     <div class="hero-body">
       <div class="container is-max-desktop">
