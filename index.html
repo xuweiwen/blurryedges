@@ -120,31 +120,7 @@
                   <span>Data</span>
                   </a>
             </span>
-            <!-- Citation Link. -->
-            <span class="link-block">
-              <a class="external-link button is-normal is-rounded is-dark" onclick="copyBibTeX()">
-                <span class="icon">
-                  <i class="fas fa-copy"></i>
-                </span>
-              <span>BibTeX</span>
-              </a>
-            </span>
-            <script>
-              function copyBibTeX() {
-                const bibtex = `@article{liu2026metaspectra+,
-                  title={MetaSpectra+: A Compact Broadband Metasurface Camera for Snapshot Hyperspectral+ Imaging},
-                  author={Liu, Yuxuan and Xu, Wei and Guo, Qi},
-                  journal={arXiv preprint arXiv:2603.09116},
-                  year={2026}
-                }`;
-                navigator.clipboard.writeText(bibtex).then(() => {
-                  alert("BibTeX copied to clipboard!");
-                }).catch(err => {
-                  console.error("Failed to copy BibTeX: ", err);
-                });
-              }
-            </script>
-              
+                     
             </div>
           </div>
         </div>
