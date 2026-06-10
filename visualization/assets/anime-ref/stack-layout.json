@@ -1,0 +1,211 @@
+{
+  "_note": "Layout transcribed verbatim from animejs.com/assets/js/scripts.js (v4.3.5-6). Module parent groups are stacked along +Z; light path for our scene enters from +Z (front) and exits at -Z (back). Positions are in anime.js's local unit; rotations are in DEGREES (anime.js convention), scales are uniform unless scaleZ given. The `role` field is our MetaSpectra+ semantic re-casting — not from anime.js.",
+  "source": "https://animejs.com/assets/js/scripts.js?v=4.3.5-6",
+  "unit_convention": {
+    "position": "anime.js world units (~0.5 ≈ 50mm in our notional scale)",
+    "rotation": "degrees",
+    "axis": "+Z toward viewer, +Y up"
+  },
+
+  "modules": [
+    {
+      "key": "renderer",
+      "glb": "module-renderer-01.glb",
+      "parent": { "z": 2.7, "scale": 0.98 },
+      "children": [
+        { "glb": "module-renderer-01.glb", "t": { "z": 0.025 } }
+      ],
+      "role": { "stage": "objective_lens", "material": "warm_amber_glass", "scenes_visible": [1,2,3,4,5,6,7,8,11] }
+    },
+    {
+      "key": "waapi",
+      "glb": "module-waapi-01.glb",
+      "parent": { "z": 2.6, "scale": 0.8 },
+      "children": [
+        { "glb": "module-waapi-01.glb", "t": { "x": 0, "y": 0, "z": 0 } }
+      ],
+      "role": { "stage": "front_decor", "material": "neutral_outline", "scenes_visible": [1,2,3,11], "note": "Decorative front accent; fades during Scene 3 along with case shell." }
+    },
+    {
+      "key": "timeline",
+      "glb": "module-timeline-01.glb",
+      "parent": { "z": 2.05 },
+      "children": [
+        { "glb": "module-timeline-01.glb", "t": {} },
+        { "_loop": { "count": 8, "each": "i" },
+          "glb": "module-timeline-02.glb",
+          "t_formula": { "x": "cos(i*45deg) * 0.68", "y": "sin(i*45deg) * 0.68", "z": -0.35, "rotateZ": "-90 + i*45" } }
+      ],
+      "role": { "stage": "barrel_ring", "material": "neutral_outline", "scenes_visible": [1,2,3,11], "note": "Reads as decorative barrel/iris ring; part of the 'device' in Scenes 1-3 and 11. Hidden during optical scenes 4-10." }
+    },
+    {
+      "key": "stagger",
+      "glb": "module-stagger-01.glb",
+      "parent": { "z": 1.52 },
+      "children": [
+        { "glb": "module-stagger-01.glb", "t": {} },
+        { "_loop": { "count": 4, "each": "i" },
+          "glb": "module-stagger-02.glb",
+          "t_formula": { "z": "-0.1 * i + 0.06" } }
+      ],
+      "role": { "stage": "M0_beamsplitter", "material": "cyan_emissive_metasurface", "scenes_visible": [1,2,3,4,5,6,7,8,11], "note": "4 stacked stagger02 plates read as a literal metasurface stack. This is M₀: the beamsplitting metasurface. The 4-plate staccato IS the 'four-ness appears here' visual beat of Scene 5." }
+    },
+    {
+      "key": "svg",
+      "glb": "module-svg-01.glb",
+      "parent": { "z": 1.16 },
+      "children": [
+        { "glb": "module-svg-01.glb", "t": {} },
+        { "note": "procedural polygon geometry runs here (radial sub-wavelength pattern). Our scene can reuse this as the M₀ sub-wavelength pattern overlay." }
+      ],
+      "role": { "stage": "M0_pattern_overlay", "material": "cyan_emissive", "scenes_visible": [4,5,6,7,8], "note": "Rendered ON TOP of the stagger M₀ plate as animated sub-wavelength pattern. Optional — drop if visually noisy." }
+    },
+    {
+      "key": "spring",
+      "glb": "module-spring-01.glb",
+      "parent": { "z": 0.99 },
+      "children": [
+        { "glb": "module-spring-01.glb", "t": {} }
+      ],
+      "role": { "stage": "optical_gap", "material": "none", "scenes_visible": [1,2,3,11], "note": "Hidden during optical path rendering (Scenes 5-10); appears only as device decoration in opening/closing cinematic." }
+    },
+    {
+      "key": "timer",
+      "glb": "module-timer-01.glb",
+      "parent": { "z": 0.6 },
+      "children": [
+        { "glb": "module-timer-01.glb", "t": { "z": 0.075 } },
+        { "glb": "module-timer-02.glb", "t": { "z": -0.08 } },
+        { "glb": "module-timer-03.glb", "t": { "x": -0.225, "y": 0.5, "z": 0.16 } },
+        { "glb": "module-timer-04.glb", "t": { "x": 0.5, "y": 0.4, "z": 0.16 } },
+        { "glb": "module-timer-05.glb", "t": { "z": 0.26, "scale": 0.95 } }
+      ],
+      "role": { "stage": "M1_M4_dispersion_metasurfaces", "material": "cyan_emissive_metasurface", "scenes_visible": [1,2,3,4,5,6,7,8,11], "note": "5 timer gears scattered at different XYZ — we repurpose timer01-04 as the 4 dispersion metasurfaces M₁-M₄ arranged as a 2×2 transverse grid (override their anime.js local positions to (±0.25, ±0.25, 0) for scenes 5-8). timer05 hidden in optical scenes." }
+    },
+    {
+      "key": "animate",
+      "glb": "module-easing-01.glb",
+      "parent": { "z": 0 },
+      "children": [
+        { "_loop": { "count": 13, "each": "i" },
+          "glb": "module-easing-01.glb",
+          "t_formula": { "note": "Originally arranged in a radial/scatter pattern via anime.js stagger utility; for our scene, override to a 2×2 grid using only 4 instances at (±0.3, ±0.3, 0)." } }
+      ],
+      "role": { "stage": "eyepieces", "material": "warm_amber_glass", "scenes_visible": [1,2,3,4,5,6,7,8,11], "note": "Easing discs become the 4 eyepiece lenses in a 2×2 tile. Remaining 9 discs hidden during optical scenes — only visible in Scenes 1-3 and 11 as device decoration." }
+    },
+    {
+      "key": "draggable",
+      "glb": "module-draggable-01.glb",
+      "parent": { "z": -0.62 },
+      "children": [
+        { "glb": "module-draggable-01.glb", "t": {} },
+        { "_loop": { "count": 5, "each": "i" },
+          "glb": "module-draggable-02.glb",
+          "t_formula": { "y": 0.92, "note": "5 small discs on a radial ring per anime.js; hidden in optical scenes." } }
+      ],
+      "role": { "stage": "sensor_plate", "material": "dark_matte_with_2x2_tile_guides", "scenes_visible": [1,2,3,4,5,6,7,8,9,10,11], "note": "The draggable-01 concentric-ring disc becomes the sensor surface. Override its material to a dark matte with faint 2×2 grid lines baked in. draggable-02 children hidden during optical scenes. This is the SINGLE shared sensor of MetaSpectra+." }
+    },
+    {
+      "key": "scroll",
+      "glb": "module-scroll-01.glb",
+      "parent": { "z": -1.05 },
+      "children": [
+        { "glb": "module-scroll-01.glb", "t": {} }
+      ],
+      "role": { "stage": "compute_pipeline_glyph", "material": "desaturated_data_grid", "scenes_visible": [1,2,3,9,10,11], "note": "Part of the computational reconstruction zone behind the sensor (Scene 9-10)." }
+    },
+    {
+      "key": "scope",
+      "glb": "module-scope-01.glb",
+      "parent": { "z": -1.81, "scale_hint": 0.98 },
+      "children": [
+        { "glb": "module-scope-01.glb", "t": { "scale": 0.98 } }
+      ],
+      "role": { "stage": "compute_process_node", "material": "desaturated_data_grid", "scenes_visible": [1,2,3,9,10,11] }
+    },
+    {
+      "key": "engine",
+      "glb": "module-engine-01.glb",
+      "parent": { "z": -1.85 },
+      "children": [
+        { "glb": "module-engine-01.glb", "t": {} }
+      ],
+      "role": { "stage": "compute_reconstruction_block", "material": "desaturated_data_grid_highlighted", "scenes_visible": [1,2,3,9,10,11], "note": "The central 'Computational reconstruction' block of Scene 10. All 4 sub-image panels flow into this one node. Single reconstruction pipeline — non-negotiable." }
+    }
+  ],
+
+  "case": {
+    "_note": "Case shell made from shield01 (edge frame) and shield02 (front/back panels + vent strips). Visible Scenes 1-3 and 11; dissolves during Scene 3 with staggered fade.",
+    "case01": {
+      "parent": { "z": 1.8 },
+      "_dims": { "Y": 0.541, "D_scale": 0.925, "E_scaleZ": 1 },
+      "corners": [
+        { "glb": "module-shield-01.glb", "t": { "scale": 0.925, "scaleZ": 1, "x": -0.541, "y":  0.541, "z": 0, "rotateZ":    0 } },
+        { "glb": "module-shield-01.glb", "t": { "scale": 0.925, "scaleZ": 1, "x":  0.541, "y":  0.541, "z": 0, "rotateZ":  -90, "_note": "inferred — anime.js bundle shows case01Objects[1] used separately; the 4-corner symmetry requires this piece" } },
+        { "glb": "module-shield-01.glb", "t": { "scale": 0.925, "scaleZ": 1, "x":  0.541, "y": -0.541, "z": 0, "rotateZ": -180 } },
+        { "glb": "module-shield-01.glb", "t": { "scale": 0.925, "scaleZ": 1, "x": -0.541, "y": -0.541, "z": 0, "rotateZ": -270 } }
+      ]
+    },
+    "case02_front": {
+      "parent": { "z": 0.35 },
+      "_dims": { "I": 0.585, "W": 0.715 },
+      "corners": [
+        { "glb": "module-shield-02.glb", "t": { "x": -0.585, "y":  0.585, "z": 0.715, "rotateZ":    0 } },
+        { "glb": "module-shield-02.glb", "t": { "x":  0.585, "y": -0.585, "z": 0.715, "rotateZ": -180 } },
+        { "glb": "module-shield-02.glb", "t": { "x": -0.585, "y": -0.585, "z": 0.715, "rotateZ": -270 } }
+      ],
+      "front_vents": {
+        "count": 15,
+        "each": { "glb": "module-shield-02.glb", "t_base": { "x": 0.585, "y": 0.585, "z": 0.715, "rotateZ": -90, "scaleZ": 0.025 }, "z_stagger": [0, 1.37] }
+      }
+    },
+    "case02_back": {
+      "parent": { "z": -1.78 },
+      "corners": [
+        { "glb": "module-shield-02.glb", "t": { "x": -0.585, "y":  0.585, "z": 0.715, "rotateZ":    0 } },
+        { "glb": "module-shield-02.glb", "t": { "x":  0.585, "y": -0.585, "z": 0.715, "rotateZ": -180 } },
+        { "glb": "module-shield-02.glb", "t": { "x": -0.585, "y": -0.585, "z": 0.715, "rotateZ": -270 } }
+      ],
+      "back_vents": {
+        "count": 15,
+        "each": { "glb": "module-shield-02.glb", "t_base": { "x": 0.585, "y": 0.585, "z": 0.715, "rotateZ": -90, "scaleZ": 0.025 }, "z_stagger": [0, 1.37] }
+      }
+    }
+  },
+
+  "optical_recast_overrides": {
+    "_note": "When entering Scene 5, the following local-position overrides repurpose anime.js child positions into MetaSpectra+ optical geometry. Applied via material+transform swap, not by re-loading geometry.",
+    "timer.children_as_M1_M4": [
+      { "glb": "module-timer-01.glb", "t": { "x": -0.25, "y":  0.25, "z": 0 } },
+      { "glb": "module-timer-02.glb", "t": { "x":  0.25, "y":  0.25, "z": 0 } },
+      { "glb": "module-timer-03.glb", "t": { "x": -0.25, "y": -0.25, "z": 0 } },
+      { "glb": "module-timer-04.glb", "t": { "x":  0.25, "y": -0.25, "z": 0 } },
+      { "glb": "module-timer-05.glb", "t": { "visible": false } }
+    ],
+    "animate.children_as_eyepieces": [
+      { "glb": "module-easing-01.glb", "t": { "x": -0.3, "y":  0.3, "z": 0 } },
+      { "glb": "module-easing-01.glb", "t": { "x":  0.3, "y":  0.3, "z": 0 } },
+      { "glb": "module-easing-01.glb", "t": { "x": -0.3, "y": -0.3, "z": 0 } },
+      { "glb": "module-easing-01.glb", "t": { "x":  0.3, "y": -0.3, "z": 0 } }
+    ],
+    "draggable.children_as_sensor": [
+      { "glb": "module-draggable-01.glb", "t": { "scale": 1.15, "_material_override": "sensor_plate_with_2x2_tiles" }}
+    ]
+  },
+
+  "scene_visibility_matrix": {
+    "_note": "For each scene, which module groups are visible. Missing modules default to per-module `scenes_visible`.",
+    "scene1_title":       { "case": true,  "front_stack": true,  "back_stack": true,  "optical_recast": false },
+    "scene2_reveal":      { "case": true,  "front_stack": true,  "back_stack": true,  "optical_recast": false },
+    "scene3_body_dissolves": { "case": "fading_out", "front_stack": true, "back_stack": "fading_out", "optical_recast": false },
+    "scene4_barrel_opens":{ "case": false, "front_stack": "morphing_to_optical", "back_stack": false, "optical_recast": "fading_in" },
+    "scene5_stack":       { "case": false, "front_stack": false, "back_stack": false, "optical_recast": true },
+    "scene6_explode":     { "case": false, "front_stack": false, "back_stack": false, "optical_recast": true },
+    "scene7_labeled":     { "case": false, "front_stack": false, "back_stack": false, "optical_recast": true },
+    "scene8_light_path":  { "case": false, "front_stack": false, "back_stack": false, "optical_recast": true },
+    "scene9_handoff":     { "case": false, "front_stack": false, "back_stack": true,  "optical_recast": "sensor_only" },
+    "scene10_outputs":    { "case": false, "front_stack": false, "back_stack": true,  "optical_recast": "sensor_only" },
+    "scene11_reassembly": { "case": "fading_in", "front_stack": "fading_in", "back_stack": "fading_in", "optical_recast": "fading_out" },
+    "epilogue":           { "case": true,  "front_stack": true,  "back_stack": true,  "optical_recast": false }
+  }
+}
